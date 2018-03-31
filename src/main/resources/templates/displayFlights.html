@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Flights</title>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+  <h2>Flights: </h2>          
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Airlines</th>
+        <th>Departure City</th>
+        <th>Arrival City</th>
+        <th>Departure Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="flight: ${flights}">
+        <td th:text="${flight.operatingAirlines}"></td>
+        <td th:text="${flight.departureCity}"></td>
+        <td th:text="${flight.arrivalCity}"></td>
+        <td th:text="${flight.estimatedDepartureTime}"></td>
+        <td><a th:href="@{/showCompleteReservation(id=${flight.id})}" class="btn btn-primary" role="button" align="center">Select</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <a href="showCreate" class="btn btn-info" role="button" align="center">Add location</a>-->
+</div>
+<div class="alert alert-success" th:if="${msg != null}" >
+  	<strong th:text="${msg}"></strong>
+</div>
+</body>
+</html>

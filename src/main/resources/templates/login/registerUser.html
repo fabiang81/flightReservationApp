@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Register User</title>
+<meta charset="UTF-8"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	
+	<div class="container">
+	<h2>User registration: </h2>  
+		<form th:action="@{/registerUser}" th:object="${user}" method="post">
+			<br/>
+			<div class="form-group" style="width:30%">
+				<label for="id">First name: </label>
+				<input type="text" th:field="*{firstName}" class="form-control" placeholder="Enter first name"/>
+			</div>			
+			<div class="form-group" style="width:30%">
+				<label for="code">Last name: </label>
+				<input type="text" th:field="*{lastName}" class="form-control" placeholder="Enter last name"/>
+			</div>
+			<div class="form-group" style="width:30%">
+				<label for="name">Email: </label>
+				<input type="text" th:field="*{email}" class="form-control" placeholder="Enter email"/>
+			</div>   
+			<div class="form-group" style="width:30%">
+				<label for="name">Password: </label>
+				<input type="password" th:field="*{password}" class="form-control" placeholder="Enter password"/>
+			</div>   
+			<!--<div class="form-group" style="width:30%">
+				<label for="name">Confirm password: </label>
+				<input type="password" th:field="*{password}" class="form-control" placeholder="Confirm password"/>
+			</div>-->
+			<div class="form-group">
+				<input type="submit" value="register" class="btn btn-success btn-send"/>
+			</div>
+		</form>
+		<!--<a href="displayLocations" class="btn btn-info" role="button" align="center">View all</a>-->
+	</div>
+	<div class="alert alert-success" th:if="${msg != null}" >
+  		<strong th:text="${msg}"></strong>
+	</div>
+</body>
+</html>

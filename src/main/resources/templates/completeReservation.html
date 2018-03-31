@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Complete Reservation</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+	<div class="container">
+		<h2>Complete reservation:</h2>
+		<div class="panel panel-default">
+			<div class="panel-heading">Reservation details: </div>
+			<div class="panel-body">
+				<label for="airline">Airline: </label> <p th:text="${flight.operatingAirlines}"></p>
+				<label for="departureCity">Departure city: </label><p th:text="${flight.departureCity}"></p>
+				<label for="arrivalCity">Arrival city: </label><p th:text="${flight.arrivalCity}"></p>
+			</div>
+		</div>
+		<form th:action="@{/completeReservation}" th:object="${reservationRequest}" method="post">
+			<br />
+			<h2>Passenger details: </h2>
+			<div class="form-group" style="width: 30%">
+				<label for="firstName">First name: </label> <input type="text"
+					th:field="*{firstName}" class="form-control"
+					placeholder="Enter first name" />
+			</div>
+			<div class="form-group" style="width: 30%">
+				<label for="lastName">Last name: </label> <input type="text"
+					th:field="*{lastName}" class="form-control"
+					placeholder="Enter last name" />
+			</div>
+			<div class="form-group" style="width: 30%">
+				<label for="email">Email: </label> <input type="text"
+					th:field="*{email}" class="form-control" placeholder="Enter email" />
+			</div>
+			<div class="form-group" style="width: 30%">
+				<label for="phone">Phone: </label> <input type="text"
+					th:field="*{phone}" class="form-control"
+					placeholder="Enter phone" />
+			</div>
+			<h2>Card details: </h2>
+			<div class="form-group" style="width: 30%">
+				<label for="cardOwner">Card owner name: </label> <input type="text"
+					th:field="*{ownerName}" class="form-control"
+					placeholder="Enter card owner name" />
+			</div>
+			<div class="form-group" style="width: 30%">
+				<label for="cardNumber">Card number: </label> <input type="text"
+					th:field="*{cardNumber}" class="form-control"
+					placeholder="Enter card number" />
+			</div>
+			<div class="form-group" style="width: 30%">
+				<label for="expirationDate">Expiration date: </label> <input type="text"
+					th:field="*{expirationDate}" class="form-control"
+					placeholder="Enter expiration date" />
+			</div>
+			<div class="form-group" style="width: 30%">
+				<label for="cvv2">Cvv2: </label> <input type="text"
+					th:field="*{cvv2}" class="form-control"
+					placeholder="Enter cvv2" />
+			</div>
+			<div class="form-group">
+				<input type="submit" value="register"
+					class="btn btn-success btn-send" />
+			</div>
+			<input type="hidden" name="flightId" th:value="${flight.id}"/>
+		</form>
+		<!--<a href="displayLocations" class="btn btn-info" role="button" align="center">View all</a>-->
+	</div>
+	<div class="alert alert-success" th:if="${msg != null}">
+		<strong th:text="${msg}"></strong>
+	</div>
+</body>
+</html>
