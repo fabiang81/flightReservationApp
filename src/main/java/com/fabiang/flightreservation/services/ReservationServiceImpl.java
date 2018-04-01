@@ -10,6 +10,8 @@ import com.fabiang.flightreservation.entities.Reservation;
 import com.fabiang.flightreservation.repos.FlightRepository;
 import com.fabiang.flightreservation.repos.PassengerRepository;
 import com.fabiang.flightreservation.repos.ReservationRepository;
+import com.fabiang.flightreservation.util.EmailUtil;
+import com.fabiang.flightreservation.util.PdfGenerator;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
@@ -22,6 +24,12 @@ public class ReservationServiceImpl implements ReservationService {
 	
 	@Autowired
 	ReservationRepository reservationRepository;
+	
+	@Autowired
+	PdfGenerator pdfGenerator;
+	
+	@Autowired
+	EmailUtil emailUtil;
 
 	@Override
 	public Reservation bookFlight(ReservationRequest request) {
@@ -44,6 +52,11 @@ public class ReservationServiceImpl implements ReservationService {
 		reservation.setCheckedIn(false);
 		
 		Reservation savedReservation = reservationRepository.save(reservation);
+		
+		String filePath = "/Users/fabiang81/Documents/reservations/reservation"+savedReservation.getId()+".pdf";
+		
+		pdfGenerator.generateItinerary(savedReservation, filePath);
+		emailUtil.sendItinerary(passenger.getEmail(), filePath);
 		
 		return savedReservation;
 	}

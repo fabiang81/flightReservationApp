@@ -5,5 +5,17 @@ spring:
     password: root
   jpa:
     show-sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: fabian81tester@gmail.com
+    password: JoyDivision80&
+    properties: 
+      mail:
+        smtp:
+          starttls:
+            enable: true
+            required: true
+          auth: true
 server:
   context-path: /flightreservation
