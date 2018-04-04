@@ -66,5 +66,11 @@ public class ReservationRequest {
 	public void setCvv2(String cvv2) {
 		this.cvv2 = cvv2;
 	}
+	@Override
+	public String toString() {
+		return "ReservationRequest [flightId=" + flightId + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", email=" + email + ", phone=" + phone + ", ownerName=" + ownerName + ", cardNumber=" + cardNumber
+				+ ", expirationDate=" + expirationDate + ", cvv2=" + cvv2 + "]";
+	}
 
 }

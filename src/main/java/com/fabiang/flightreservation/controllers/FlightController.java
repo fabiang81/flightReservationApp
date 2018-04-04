@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,10 +23,13 @@ public class FlightController {
 	@Autowired
 	FlightRepository flightRepository;
 	
+	private static final Logger LOGGER = LoggerFactory.getLogger(FlightController.class);
+	
 	@RequestMapping("findFlights")
 	public String findFlights(@RequestParam("departureCity") String from, @RequestParam("arrivalCity") String to, 
 			@RequestParam("dateOfDeparture") String departureDate, ModelMap modelMap) {
-
+		
+		LOGGER.info("Inside findFlights() From: "+from + " To: "+to+ " Departure Date: "+departureDate);
 		SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
 		
 		Date date = null;
@@ -35,7 +40,14 @@ public class FlightController {
 		}
 		List<Flight> flights = flightRepository.findFlights(from, to, date);
 		modelMap.addAttribute("flights", flights);
+		LOGGER.info("Flights found are : "+flights);
 		return "displayFlights";
+	}
+	
+	@RequestMapping("admin/showAddFlight")
+	public String showAddFlight(ModelMap modelMap) {
+		modelMap.addAttribute("msg", "Add Flight: ");
+		return "admin/addFlight";
 	}
 
 }

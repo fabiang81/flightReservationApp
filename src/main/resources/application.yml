@@ -19,3 +19,17 @@ spring:
           auth: true
 server:
   context-path: /flightreservation
+  
+logging:
+  level:
+    root: INFO
+  file: /Users/fabiang81/Documents/reservations/logs/flightreservation.log
+  
+com:
+  fabian81:
+    flightreservation:
+      itinerary:
+        dirpath: /Users/fabiang81/Documents/reservations/reservation
+        email:
+          subject: Please find your itinerary attached
+          body: Itinerary for your flight
