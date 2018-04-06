@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 public class Role extends AbstractEntity implements GrantedAuthority{
-	
+
 	private String name;
 	
 	@ManyToMany(mappedBy="roles")

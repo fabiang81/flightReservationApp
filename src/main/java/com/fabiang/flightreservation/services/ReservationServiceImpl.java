@@ -1,12 +1,13 @@
 package com.fabiang.flightreservation.services;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.fabiang.flightreservation.controllers.UserController;
 import com.fabiang.flightreservation.dto.ReservationRequest;
 import com.fabiang.flightreservation.entities.Flight;
 import com.fabiang.flightreservation.entities.Passenger;
@@ -41,6 +42,7 @@ public class ReservationServiceImpl implements ReservationService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReservationServiceImpl.class);
 
 	@Override
+	@Transactional
 	public Reservation bookFlight(ReservationRequest request) {
 		//MakePayment impl
 		
